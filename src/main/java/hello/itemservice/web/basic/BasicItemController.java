@@ -83,7 +83,7 @@ public class BasicItemController {
         return "basic/item";
     }
 
-    @PostMapping("/add")
+//    @PostMapping("/add")
     public String addItemV4(
             Item item   // note. Can be omitted @ModelAttribute + Item -> item (using class name as lowercase)
     ) {
@@ -93,6 +93,14 @@ public class BasicItemController {
 //        model.addAttribute("item", item); // note. can be omitted.
 
         return "basic/item";
+    }
+
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+
+        itemRepository.save(item);
+
+        return "redirect:/basic/items/" + item.getId();
     }
 
     @GetMapping("/{itemId}/edit")
